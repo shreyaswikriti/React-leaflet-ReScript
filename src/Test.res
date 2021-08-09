@@ -52,18 +52,21 @@ let content = {
      }
     }
 @react.component
-let make = () => { <div id="m">
+let make = () => { 
+  let options = { Mapbinding.iconUrl: "https://ocaml.org/img/favicon32x32.ico" }
+  let icon = Mapbinding.icon(Mapbinding.leaflet, ~options)
+  <div id="m">
     <div> {React.string("Map")} </div>
 <div >
      <MapContainer center=content.center zoom=content.zoom scrollWheelZoom=content.scrollWheelZoom maxBounds=content.maxBound minZoom=content.minZoom id="mapid">
      <TileLayer attribution=content.attribution url=content.url noWrap=true />
 
-              <Marker position=content.center >
+              <Marker position=content.center icon >
               <Popup>
      {React.string(" A pretty CSS3 popup. <br /> Easily customizable.")}
     </Popup>
     </Marker>
-     <Marker position=content.position >
+     <Marker position=content.position icon >
               <Popup>
      {React.string(" Another one")}
     </Popup>

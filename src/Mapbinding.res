@@ -15,12 +15,26 @@ module MapContainer = {
 module TileLayer = {
   @module("react-leaflet") @react.component
   external make: (~attribution: string=?,~noWrap:bool, ~url: string) => React.element = "TileLayer"
-  
 }
+
+// Abstract Icon type
+type icon
+
+type iconOptions = {
+  iconUrl : string
+}
+
+// Abstract Leaflet Object type
+type leaflet
+
+// Binding to the Leaflet function `icon` which creates an Icon object
+@send external icon: (leaflet, ~options: iconOptions) => icon = "icon"
+@val external leaflet: leaflet = "L"
+
 
 module Marker = {
   @module("react-leaflet") @react.component
-  external make: (~position: LatLng.t, ~children: React.element=?) => React.element = "Marker"
+  external make: (~position: LatLng.t, ~icon: icon=?, ~children: React.element=?) => React.element = "Marker"
 }
 module Popup = {
   @module("react-leaflet") @react.component
